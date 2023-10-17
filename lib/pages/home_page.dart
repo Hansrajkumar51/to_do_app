@@ -68,9 +68,29 @@ class _HomePageState extends State<HomePage> {
             controller: _controller,
             onSave: () {
               setState(() {
-                db.toDoList.add([_controller.text, false]);
-                _controller.clear();
-                db.updateDatabase();
+                if (_controller.text.isEmpty) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('Alert'),
+                        content: Text('Text can\'t be empty.'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(); // Close the dialog
+                            },
+                            child: Text('OK'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                } else {
+                  db.toDoList.add([_controller.text, false]);
+                  _controller.clear();
+                  db.updateDatabase();
+                }
               });
               Navigator.of(context).pop();
               db.updateDatabase();
