@@ -32,9 +32,9 @@ class ToDoTile extends StatelessWidget {
           )
         ]),
         child: Container(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 159, 158, 160),
+              color: Color.fromARGB(255, 238, 238, 238),
               borderRadius: BorderRadius.circular(12)),
           child: Row(
             children: [
@@ -46,13 +46,19 @@ class ToDoTile extends StatelessWidget {
               ),
 
               //task name
-              Text(
-                taskName,
-                style: TextStyle(
-                    color: Colors.white,
-                    decoration: taskCompleted
-                        ? TextDecoration.lineThrough
-                        : TextDecoration.none),
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Text(
+                    taskName,
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.black,
+                        decoration: taskCompleted
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none),
+                  ),
+                ),
               ),
             ],
           ),
